@@ -5,12 +5,14 @@
        <th>sort</th>
        <th>name</th>
        <th>date of birth</th>
+       <th></th>
      </tr>
      <tr v-for="(animal, index) in animals" :key="index">
        <td>{{animal.sort}}</td>
        <td>{{animal.name}}</td>
        <td v-if="animal.dateOfBirth">{{animal.dateOfBirth.toLocaleString()}}</td>
        <td v-else>unknown</td>
+       <td><button @click="remove(index)">delete</button></td>
     
      </tr>
    </table>
@@ -50,6 +52,11 @@ export default {
         },
       ]
 
+    }
+  },
+  methods: {
+    remove(index){
+      this.animals.splice(index, 1);
     }
   }
 }
