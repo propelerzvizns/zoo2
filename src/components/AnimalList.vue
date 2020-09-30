@@ -9,7 +9,8 @@
      <tr v-for="(animal, index) in animals" :key="index">
        <td>{{animal.sort}}</td>
        <td>{{animal.name}}</td>
-       <td>{{animal.dateOfBirth}}</td>
+       <td v-if="animal.dateOfBirth">{{animal.dateOfBirth.toLocaleString()}}</td>
+       <td v-else>unknown</td>
     
      </tr>
    </table>
@@ -25,27 +26,27 @@ export default {
         {
           sort: 'dog',
           name: 'cuko',
-          dateOfBirth: new Date(2020, 1, 7).toLocaleString(),
+          dateOfBirth: new Date(2020, 1, 7),
         },        
         {
           sort: 'wolf',
           name: 'vucko',
-          dateOfBirth: new Date(2011, 11, 27).toLocaleString(),
+          dateOfBirth: new Date(2011, 11, 27),
         },        
         {
           sort: 'bird',
           name: 'birdie',
-          dateOfBirth: new Date(2022, 12, 17).toLocaleString(),
+          dateOfBirth: new Date(2022, 12, 17),
         },        
         {
           sort: 'pig',
           name: 'pigic',
-          dateOfBirth: new Date(2012, 4, 25).toLocaleString(),
+          dateOfBirth: new Date(2012, 4, 25),
         },       
         {
           sort: 'cat',
           name: 'maca',
-          dateOfBirth: new Date(2009, 9, 11).toLocaleString(),
+          dateOfBirth: null
         },
       ]
 
