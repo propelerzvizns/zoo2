@@ -1,5 +1,12 @@
 <template>
   <div class="hello">
+    <form @submit.prevent>
+      <input type="text" v-model="sort"/>
+      <input type="text" v-model="name"/>
+      <input type="date" v-model="dateOfBirth"/>
+       <button @click="addAnimal">add animal</button>
+
+    </form>
    <table>
      <tr>
        <th>sort</th>
@@ -23,8 +30,12 @@
 <script>
 export default {
   name: 'AnimalList',
+
   data() {
     return {
+      sort: '',
+      name: '',
+      dateOfBirth: null,
       animals: [
         {
           sort: 'dog',
@@ -63,6 +74,14 @@ export default {
     moveToTop(index, animal) {
       this.remove(index);
       this.animals.unshift(animal);
+    },
+    addAnimal() {
+      var newAnimal = {
+        name: this.name,
+        sort: this.sort,
+        dateOfBirth: this.dateOfBirth
+      }
+     this.animals.push(newAnimal);
     }
   }
 }
@@ -101,4 +120,12 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin-left: 35%;
+  margin-right: 35%;
+}
+
 </style>
