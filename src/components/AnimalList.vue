@@ -4,6 +4,9 @@
       <input type="text" v-model="sort"/>
       <input type="text" v-model="name"/>
       <input type="date" v-model="dateOfBirth"/>
+      <select v-model="selected">
+        <option v-for="(animalSeletor, index) in animalSeletors" :key="index" :value="animalSeletor">{{animalSeletor}}</option>
+      </select>
        <button @click="addAnimal">add animal</button>
 
     </form>
@@ -19,6 +22,7 @@
        <td>{{animal.name}}</td>
        <td v-if="animal.dateOfBirth">{{animal.dateOfBirth.toLocaleString()}}</td>
        <td v-else>unknown</td>
+       <td>{{animal.animalSeletor}}</td>
        <td><button @click="remove(index)">delete</button></td>
        <td><button @click="moveToTop(index, animal)">move to top</button></td>
     
@@ -36,6 +40,8 @@ export default {
       sort: '',
       name: '',
       dateOfBirth: null,
+      selected: '',
+      animalSeletors: ['bird', 'snake', 'boar'],
       animals: [
         {
           sort: 'dog',
@@ -79,7 +85,8 @@ export default {
       var newAnimal = {
         name: this.name,
         sort: this.sort,
-        dateOfBirth: this.dateOfBirth
+        dateOfBirth: this.dateOfBirth,
+        animalSeletor: this.selected
       }
      this.animals.push(newAnimal);
     }
