@@ -15,6 +15,8 @@
        <th>sort</th>
        <th>name</th>
        <th>date of birth</th>
+       <th>sector</th>
+       <th></th>
        <th></th>
      </tr>
      <tr v-for="(animal, index) in animals" :key="index">
@@ -28,6 +30,16 @@
     
      </tr>
    </table>
+  <table>
+    <tr>
+      <th>name of sector</th>
+      <th></th>
+    </tr>
+    <tr v-for="(sector, index) in animalSeletors" :key="index"> 
+     <td>{{sector}}</td>
+     <td><button @click="listAnimals(sector)">vidi listu zivotinja</button></td>
+    </tr>
+  </table>
   </div>
 </template>
 
@@ -89,6 +101,19 @@ export default {
         animalSeletor: this.selected
       }
      this.animals.push(newAnimal);
+    },
+   
+    listAnimals(sector) {
+      const animalsList=[];
+     this.animals.forEach(animal => {
+       if(animal.animalSeletor === sector){
+         animalsList.push(`Animal name: ${animal.name}, Animal sort: ${animal.sort}, Date of birth:${animal.dateOfBirth} | END OF ITEM | `);
+
+       }
+  
+      
+     });
+     alert(animalsList.toString());
     }
   }
 }
